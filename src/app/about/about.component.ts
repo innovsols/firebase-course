@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-about',
+  // tslint:disable-next-line: component-selector
+  selector: 'about',
   templateUrl: './about.component.html',
   styleUrls: ['./about.component.css']
 })
