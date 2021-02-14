@@ -5,7 +5,7 @@ import { MatDialogRef } from '@angular/material/dialog/dialog-ref';
 import { Course } from '../model/course';
 
 @Component({
-  // tslint:disable-next-line: component-selector
+
   selector: 'course-dialog',
   templateUrl: './course-dialog.component.html',
   styleUrls: ['./course-dialog.component.css']
