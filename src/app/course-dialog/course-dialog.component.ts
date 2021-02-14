@@ -1,15 +1,40 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef } from '@angular/material/dialog/dialog-ref';
+import { Course } from '../model/course';
 
 @Component({
-  selector: 'app-course-dialog',
+  // tslint:disable-next-line: component-selector
+  selector: 'course-dialog',
   templateUrl: './course-dialog.component.html',
   styleUrls: ['./course-dialog.component.css']
 })
 export class CourseDialogComponent implements OnInit {
 
-  constructor() { }
+  form!: FormGroup;
+  description!: string;
+
+  constructor(private fb: FormBuilder,
+              private dialogRef: MatDialogRef<CourseDialogComponent>,
+              @Inject(MAT_DIALOG_DATA) course: Course) {
+
+    const titles = course.titles;
+
+    this.form = fb.group({
+      description: [titles.description, Validators.required],
+      longDescription: [titles.longDescription, Validators.required]
+    });
+  }
 
   ngOnInit(): void {
   }
 
+  save(): void {
+    this.dialogRef.close(this.form.value);
+  }
+
+  close(): void {
+    this.dialogRef.close();
+  }
 }
