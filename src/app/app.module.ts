@@ -12,7 +12,7 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 
 import { MatMenuModule } from '@angular/material/menu';
-import { MatButtonModule } from '@angular/material/button'
+import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { MatTabsModule } from '@angular/material/tabs';
@@ -33,7 +33,7 @@ import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
-import { AngularFireStorageModule } from '@angular/fire/storage'; 
+import { AngularFireStorageModule } from '@angular/fire/storage';
 
 @NgModule({
   declarations: [
@@ -67,7 +67,7 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
     MatDatepickerModule,
     MatMomentDateModule,
     ReactiveFormsModule,
-    AngularFireModule.initializeApp(environment.firebase),
+    // AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFirestoreModule,
     AngularFireStorageModule
