@@ -1,3 +1,4 @@
+import { CourseResolver } from './services/course.resolve';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -24,7 +25,7 @@ import { LoginComponent } from './login/login.component';
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [CourseResolver],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
