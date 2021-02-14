@@ -34,6 +34,7 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
+import { MatCommonModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -67,6 +68,7 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
     MatDatepickerModule,
     MatMomentDateModule,
     ReactiveFormsModule,
+    MatCommonModule,
     // AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFirestoreModule,
