@@ -1,3 +1,4 @@
+import { CoursesService } from './../services/courses.service';
 
 import { map, tap } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
@@ -19,23 +20,13 @@ export class HomeComponent implements OnInit {
 
   advancedCourses$: Observable<Course[]>;
 
-  constructor(private db: AngularFirestore) {
+  constructor(private service: CoursesService) {
 
    }
 
   ngOnInit(): void {
 
-   this.courses$ = this.db.collection('courses').snapshotChanges().pipe(
-      map( snaps => {
-        return snaps.map(snap => {
-          return {
-            id: snap.payload.doc.id,
-            ...snap.payload.doc.data() as {}
-          } as Course;
-        });
-      }),
-
-    );
+   this.courses$ = this.service.loadAllCourses();
 
    this.beginnersCourses$ = this.courses$.pipe(
       map(courses => courses.filter(course => course.categories.includes('BEGINNER')))
