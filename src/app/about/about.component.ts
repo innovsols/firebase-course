@@ -16,16 +16,8 @@ export class AboutComponent implements OnInit {
   constructor(private db: AngularFirestore) { }
 
   ngOnInit(): void {
-    this.db.collection('courses').snapshotChanges()
-    .subscribe(snaps => {
-     const courses: Course[] = snaps.map(snap => {
-        return {
-          id: snap.payload.doc.id,
-          ...snap.payload.doc.data
-        } as Course;
-      });
-     console.log(courses);
-    });
+
+    // statechanges uses modified state of documents and provides the same.
   }
 
 }

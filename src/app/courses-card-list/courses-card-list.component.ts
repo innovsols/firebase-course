@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { CourseDialogComponent } from '../course-dialog/course-dialog.component';
 import { Course } from '../model/course';
@@ -9,7 +9,7 @@ import { Course } from '../model/course';
   templateUrl: './courses-card-list.component.html',
   styleUrls: ['./courses-card-list.component.css']
 })
-export class CoursesCardListComponent implements OnInit {
+export class CoursesCardListComponent implements OnInit, AfterViewInit {
 
   @Input()
   courses!: Course[];
@@ -17,6 +17,11 @@ export class CoursesCardListComponent implements OnInit {
   constructor(private dialog: MatDialog) { }
 
   ngOnInit(): void {
+
+
+  }
+
+  ngAfterViewInit(): void {
 
   }
 
