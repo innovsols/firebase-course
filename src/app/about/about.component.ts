@@ -16,8 +16,16 @@ export class AboutComponent implements OnInit {
   constructor(private db: AngularFirestore) { }
 
   ngOnInit(): void {
-    this.db.collection('courses').valueChanges()
-    .subscribe(console.log);
+    this.db.collection('courses').snapshotChanges()
+    .subscribe(snaps => {
+     const courses: Course[] = snaps.map(snap => {
+        return {
+          id: snap.payload.doc.id,
+          ...snap.payload.doc.data
+        } as Course;
+      });
+     console.log(courses);
+    });
   }
 
 }
