@@ -1,8 +1,9 @@
+import { Lesson } from './../model/lesson';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Injectable } from '@angular/core';
 import { first, map } from 'rxjs/operators';
 import { Course } from '../model/course';
-import { Observable } from 'rxjs';
+import { from, Observable } from 'rxjs';
 import { convertSnaps } from './db-util';
 
 @Injectable({
@@ -44,6 +45,16 @@ export class CoursesService {
         return courses.length == 1 ? courses[0] : undefined;
       }
       ),
+      first()
+    );
+  }
+
+  findLessons(courseId: string, sortOrder: firebase.default.firestore.OrderByDirection = 'asc', pageNumber = 0, pageSize = 3)
+  : Observable<Lesson[]> {
+
+  return this.db.collection(`courses/${courseId}/lessons`, ref => ref.orderBy('seqNo', sortOrder)
+  .limit(pageSize).startAfter(pageNumber * pageSize)).snapshotChanges().pipe(
+      map(snaps => convertSnaps<Lesson>(snaps)),
       first()
     );
   }
