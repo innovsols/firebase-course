@@ -1,8 +1,12 @@
 
 .course-card {
-  margin: 20px 10px;
+  margin: 20px 50px;
+  width: 400px;
+  align-content: center;
+
 }
 
 .course-actions {
   text-align: center;
 }
+

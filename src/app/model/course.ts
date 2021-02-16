@@ -10,4 +10,5 @@ export interface Course {
   courseListIcon: string;
   categories: string[];
   lessonsCount: number;
+  url: string;
 }

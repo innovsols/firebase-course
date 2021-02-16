@@ -19,6 +19,9 @@ export class CourseComponent implements OnInit {
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+
+    // tslint:disable-next-line: no-string-literal
+    this.course = this.route.snapshot.data['course'];
   }
 
 
