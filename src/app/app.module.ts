@@ -37,6 +37,9 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { LoginComponent } from './login/login.component';
 
+import * as firebase from 'firebase/app'
+
+firebase.default.initializeApp(environment.firebase);
 
 
 @NgModule({

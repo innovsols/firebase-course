@@ -14,7 +14,7 @@ export class CoursesService {
   constructor(private db: AngularFirestore) { }
 
   saveCourse(courseId: string, changes: Partial<Course>): Observable<any> {
-    console.log('CourseId',courseId, 'changes', changes);
+    console.log('CourseId', courseId, 'changes', changes);
     return from( this.db.doc(`courses/${courseId}`).update(changes));
   }
   loadAllCourses(): Observable<Course[]> {
