@@ -3,6 +3,8 @@ import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 
+
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -22,7 +24,10 @@ export class AppComponent implements OnInit {
 
   }
   ngOnInit(): void {
-    this.afAuth.authState.subscribe(console.log);
+
+
+
+    this.afAuth.authState.subscribe(user => console.log('user', user));
 
     this.loggedin$ = this.afAuth.authState.pipe(map(user => !!user));
 

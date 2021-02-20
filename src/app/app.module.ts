@@ -29,19 +29,48 @@ import { CourseResolver } from './services/course.resolve';
 import { CourseDialogComponent } from './course-dialog/course-dialog.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
-import { AngularFireModule } from '@angular/fire';
+import { AngularFireModule, FirebaseApp } from '@angular/fire';
 
 import { environment } from '../environments/environment';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { LoginComponent } from './login/login.component';
+import {firebase, firebaseui, FirebaseUIModule} from 'firebaseui-angular';
 
-import * as firebase from 'firebase/app'
+// import * as firebaseapp from 'firebase/app';
 
-firebase.default.initializeApp(environment.firebase);
+// firebaseapp.default.initializeApp(environment.firebase);
 
-
+const firebaseUiAuthConfig: firebaseui.auth.Config = {
+  signInFlow: 'popup',
+  signInOptions: [
+    firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+    {
+      scopes: [
+        'public_profile',
+        'email',
+        'user_likes',
+        'user_friends'
+      ],
+      customParameters: {
+        auth_type: 'reauthenticate'
+      },
+      provider: firebase.auth.FacebookAuthProvider.PROVIDER_ID
+    },
+    firebase.auth.TwitterAuthProvider.PROVIDER_ID,
+    firebase.auth.GithubAuthProvider.PROVIDER_ID,
+    {
+      requireDisplayName: false,
+      provider: firebase.auth.EmailAuthProvider.PROVIDER_ID
+    },
+    firebase.auth.PhoneAuthProvider.PROVIDER_ID,
+    firebaseui.auth.AnonymousAuthProvider.PROVIDER_ID
+  ],
+ // tosUrl: '<your-tos-link>',
+ // privacyPolicyUrl: '<your-privacyPolicyUrl-link>',
+  credentialHelper: firebaseui.auth.CredentialHelper.GOOGLE_YOLO
+};
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,7 +79,7 @@ firebase.default.initializeApp(environment.firebase);
     CourseComponent,
     CoursesCardListComponent,
     CourseDialogComponent,
-    LoginComponent,
+    LoginComponent
 
   ],
   imports: [
@@ -80,6 +109,7 @@ firebase.default.initializeApp(environment.firebase);
     AngularFireAuthModule,
     AngularFirestoreModule.enablePersistence(),
     AngularFireStorageModule,
+    FirebaseUIModule.forRoot(firebaseUiAuthConfig)
 
   ],
   providers: [
