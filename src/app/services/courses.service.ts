@@ -1,10 +1,11 @@
 import { Lesson } from './../model/lesson';
-import { AngularFirestore } from '@angular/fire/firestore';
+
 import { Injectable } from '@angular/core';
 import { first, map } from 'rxjs/operators';
 import { Course } from '../model/course';
 import { from, Observable } from 'rxjs';
 import { convertSnaps } from './db-util';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root'
@@ -53,7 +54,7 @@ export class CoursesService {
     );
   }
 
-  findLessons(courseId: string, sortOrder: firebase.default.firestore.OrderByDirection = 'asc', pageNumber = 0, pageSize = 3)
+  findLessons(courseId: string, sortOrder: firebase.firestore.OrderByDirection = 'asc', pageNumber = 0, pageSize = 3)
   : Observable<Lesson[]> {
 
   return this.db.collection(`courses/${courseId}/lessons`, ref => ref.orderBy('seqNo', sortOrder)

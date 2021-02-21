@@ -1,3 +1,5 @@
+import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFireStorageModule } from '@angular/fire/storage';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -29,17 +31,14 @@ import { CourseResolver } from './services/course.resolve';
 import { CourseDialogComponent } from './course-dialog/course-dialog.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
-import { AngularFireModule } from '@angular/fire';
 
 import { environment } from '../environments/environment';
-import { AngularFireAuthModule } from '@angular/fire/auth';
-import { AngularFirestoreModule } from '@angular/fire/firestore';
-import { AngularFireStorageModule } from '@angular/fire/storage';
+
 import { LoginComponent } from './login/login.component';
 
-import * as firebase from 'firebase/app'
-
-firebase.default.initializeApp(environment.firebase);
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFirestoreModule} from '@angular/fire/firestore';
 
 
 @NgModule({
@@ -78,7 +77,7 @@ firebase.default.initializeApp(environment.firebase);
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
-    AngularFirestoreModule.enablePersistence(),
+    AngularFirestoreModule,
     AngularFireStorageModule,
 
   ],

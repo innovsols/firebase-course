@@ -3,7 +3,6 @@ import { CoursesService } from './../services/courses.service';
 import { map, tap } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
 import { Course } from '../model/course';
 
 @Component({

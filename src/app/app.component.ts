@@ -1,7 +1,8 @@
+import { AngularFireAuth } from '@angular/fire/auth';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/auth';
+
 
 @Component({
   selector: 'app-root',

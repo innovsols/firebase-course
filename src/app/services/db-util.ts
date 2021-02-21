@@ -1,4 +1,3 @@
-import { DocumentChangeAction } from '@angular/fire/firestore';
 
 
 export function convertSnaps<T>(snaps: any): T[]{

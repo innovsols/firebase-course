@@ -1,9 +1,12 @@
 import { ReactiveFormsModule } from '@angular/forms';
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/auth';
+import { Component, NgZone, OnDestroy, OnInit } from '@angular/core';
+
 import * as firebaseui from 'firebaseui';
 import * as firebase from 'firebase/app';
+import 'firebase/auth';
 import { Router } from '@angular/router';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { FirebaseApp } from '@angular/fire';
 
 @Component({
 
@@ -16,32 +19,39 @@ export class LoginComponent implements OnInit, OnDestroy {
   ui: firebaseui.auth.AuthUI;
 
   constructor(private ngfAuth: AngularFireAuth,
-              private router: Router) { }
+              private router: Router,
+              private ngZone: NgZone) { }
 
 
   ngOnInit(): void {
 
     const uiConfig = {
       signInOptions: [
-        firebase.default.auth.GoogleAuthProvider.PROVIDER_ID,
-        firebase.default.auth.FacebookAuthProvider.PROVIDER_ID,
-        firebase.default.auth.EmailAuthProvider.PROVIDER_ID
-        ],
+        firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+        firebase.auth.EmailAuthProvider.PROVIDER_ID
+      ],
       callbacks: {
         signInSuccessWithAuthResult: this.onLoginSuccess.bind(this)
       }
     };
 
-    this.ui = new firebaseui.auth.AuthUI(firebase.default.auth());
+
+    this.ui = new firebaseui.auth.AuthUI(firebase.auth());
+
 
     this.ui.start('#ui-auth-container', uiConfig);
+    console.log('ngfAuth', JSON.stringify(this.ngfAuth));
+
+
+
   }
 
   onLoginSuccess(result: any): boolean {
     console.log('Firebase UI result', result);
 
-    this.router.navigateByUrl('/courses');
+    this.ngZone.run(() => this.router.navigateByUrl('/courses'));
     return false;
+
   }
 
   ngOnDestroy(): void {
